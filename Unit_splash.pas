@@ -4,10 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, StdCtrls;
 
 type
-  TSplash = class(TForm)
+  TForm_splash = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
   private
     { Private declarations }
   public
@@ -15,7 +17,7 @@ type
   end;
 
 var
-  Splash: TSplash;
+  Form_splash: TForm_splash;
 
 implementation
 

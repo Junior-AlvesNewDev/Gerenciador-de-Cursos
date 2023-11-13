@@ -1,17 +1,38 @@
-object Splash: TSplash
-  Left = 335
-  Top = 13
-  Width = 649
-  Height = 480
+object Form_splash: TForm_splash
+  Left = 179
+  Top = 142
   BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
   Caption = 'Form_splash'
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
+  ClientHeight = 142
+  ClientWidth = 461
+  Color = clWhite
+  Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Height = -35
+  Font.Name = 'Verdana'
   Font.Style = []
   OldCreateOrder = False
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 42
+  object Label1: TLabel
+    Left = 32
+    Top = 16
+    Width = 397
+    Height = 42
+    Caption = 'Gerenciador de Cursos'
+  end
+  object Label2: TLabel
+    Left = 96
+    Top = 72
+    Width = 247
+    Height = 25
+    Caption = 'Aguarde, carregando...'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+  end
 end

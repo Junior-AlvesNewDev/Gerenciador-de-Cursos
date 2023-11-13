@@ -4,7 +4,7 @@ uses
   Forms,
   Unit_logon in 'Unit_logon.pas' {Form_logon},
   Unit_menu in 'Unit_menu.pas' {Form_menu},
-  Unit_splash in 'Unit_splash.pas' {Splash};
+  Unit_splash in 'Unit_splash.pas' {Form_splash};
 
 {$R *.res}
 
@@ -18,6 +18,9 @@ begin
   Application.CreateForm(TForm_logon, Form_logon);
   Application.CreateForm(TForm_menu, Form_menu);
   //Application.CreateForm(TSplash, Splash);
+
+  if form_logon.autenticacao = false then
+    Application.Terminate;
 
   Form_splash.Hide;
   Form_splash.Destroy;

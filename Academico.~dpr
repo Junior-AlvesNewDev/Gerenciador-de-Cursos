@@ -4,7 +4,7 @@ uses
   Forms,
   Unit_logon in 'Unit_logon.pas' {Form_logon},
   Unit_menu in 'Unit_menu.pas' {Form_menu},
-  Unit_splash in 'Unit_splash.pas' {Splash};
+  Unit_splash in 'Unit_splash.pas' {Form_splash};
 
 {$R *.res}
 

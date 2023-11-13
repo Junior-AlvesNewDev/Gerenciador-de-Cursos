@@ -1,6 +1,6 @@
 object Form_logon: TForm_logon
-  Left = 181
-  Top = 122
+  Left = 252
+  Top = 425
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Logon'
@@ -575,14 +575,14 @@ object Form_logon: TForm_logon
     Left = 32
     Top = 32
     Width = 201
-    Height = 25
+    Height = 21
     TabOrder = 0
   end
   object edt_senha: TEdit
     Left = 32
     Top = 88
     Width = 201
-    Height = 25
+    Height = 21
     TabOrder = 1
   end
   object btn_ok: TBitBtn
@@ -601,5 +601,15 @@ object Form_logon: TForm_logon
     Caption = 'Fechar'
     TabOrder = 3
     Kind = bkCancel
+  end
+  object ConexaoBD: TADOConnection
+    LoginPrompt = False
+    Left = 272
+    Top = 96
+  end
+  object ADOQuery_aux: TADOQuery
+    Parameters = <>
+    Left = 272
+    Top = 128
   end
 end
