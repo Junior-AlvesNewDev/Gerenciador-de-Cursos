@@ -1,7 +1,7 @@
 object Form_menu: TForm_menu
-  Left = 173
-  Top = 110
-  Width = 464
+  Left = 289
+  Top = 80
+  Width = 462
   Height = 613
   BorderIcons = [biSystemMenu]
   Caption = 'Menu Gerenciador de Cursos'
@@ -12,10 +12,11 @@ object Form_menu: TForm_menu
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
-    Left = 216
+    Left = 214
     Top = 0
     Width = 232
     Height = 574
@@ -2158,5 +2159,11 @@ object Form_menu: TForm_menu
       250F0703E7DDB5A1020000000000000000000000060802171D2D6E5B2115F402
       020000000000000000000000000000F1F10D111A280000000000000000000000
       000000000000000000F1F10A00000000000000000000}
+  end
+  object ADOQuery_aux: TADOQuery
+    Connection = Form_logon.ConexaoBD
+    Parameters = <>
+    Left = 400
+    Top = 520
   end
 end

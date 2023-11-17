@@ -16,7 +16,6 @@ begin
   Form_splash.Update;
 
   Application.CreateForm(TForm_logon, Form_logon);
-  Application.CreateForm(TForm_menu, Form_menu);
   //Application.CreateForm(TSplash, Splash);
 
   if form_logon.autenticacao = false then

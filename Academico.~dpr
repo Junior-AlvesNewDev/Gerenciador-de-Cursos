@@ -19,6 +19,9 @@ begin
   Application.CreateForm(TForm_menu, Form_menu);
   //Application.CreateForm(TSplash, Splash);
 
+  if form_logon.autenticacao = false then
+    Application.Terminate;
+
   Form_splash.Hide;
   Form_splash.Destroy;
 

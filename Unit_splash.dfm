@@ -1,6 +1,6 @@
 object Form_splash: TForm_splash
-  Left = 179
-  Top = 119
+  Left = 201
+  Top = 517
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Form_splash'

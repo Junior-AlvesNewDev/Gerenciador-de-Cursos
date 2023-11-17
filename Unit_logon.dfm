@@ -1,6 +1,6 @@
 object Form_logon: TForm_logon
-  Left = 252
-  Top = 425
+  Left = 187
+  Top = 389
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Logon'
@@ -571,7 +571,7 @@ object Form_logon: TForm_logon
       8A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A002
       8A28A0028A28A0028A28A0028A28A0028A28A00FFFD9}
   end
-  object edt_uauraio: TEdit
+  object edt_usuario: TEdit
     Left = 32
     Top = 32
     Width = 201
@@ -585,29 +585,37 @@ object Form_logon: TForm_logon
     Height = 21
     TabOrder = 1
   end
-  object btn_ok: TBitBtn
-    Left = 40
-    Top = 128
-    Width = 75
-    Height = 33
-    TabOrder = 2
-    Kind = bkOK
-  end
   object btn_fechar: TBitBtn
     Left = 144
     Top = 128
     Width = 81
     Height = 33
     Caption = 'Fechar'
-    TabOrder = 3
+    TabOrder = 2
+    OnClick = btn_fecharClick
     Kind = bkCancel
   end
+  object btn_ok: TBitBtn
+    Left = 32
+    Top = 128
+    Width = 75
+    Height = 33
+    TabOrder = 3
+    OnClick = btn_okClick
+    Kind = bkOK
+  end
   object ConexaoBD: TADOConnection
+    ConnectionString = 
+      'Provider=SQLNCLI10.1;Persist Security Info=False;User ID=sa;Init' +
+      'ial Catalog=Academico;Data Source=LENOVO;Initial File Name="";Se' +
+      'rver SPN=""'
     LoginPrompt = False
+    Provider = 'SQLNCLI10.1'
     Left = 272
-    Top = 96
+    Top = 88
   end
   object ADOQuery_aux: TADOQuery
+    Connection = ConexaoBD
     Parameters = <>
     Left = 272
     Top = 128
