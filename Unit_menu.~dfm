@@ -1,6 +1,6 @@
 object Form_menu: TForm_menu
-  Left = 289
-  Top = 80
+  Left = 204
+  Top = 83
   Width = 462
   Height = 613
   BorderIcons = [biSystemMenu]
@@ -2040,6 +2040,7 @@ object Form_menu: TForm_menu
     Height = 33
     Caption = 'Controle de Acesso'
     TabOrder = 8
+    OnClick = btn_controleClick
     Glyph.Data = {
       E2050000424DE205000000000000A20300002800000018000000180000000100
       08000000000040020000120B0000120B0000DB000000DB000000FF00FF00E9E7
@@ -2097,6 +2098,7 @@ object Form_menu: TForm_menu
     Height = 25
     Caption = 'Fechar'
     TabOrder = 9
+    OnClick = FecharClick
     Kind = bkCancel
   end
   object btn_cadcursos: TBitBtn

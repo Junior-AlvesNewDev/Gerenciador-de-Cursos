@@ -23,6 +23,8 @@ type
     Image2: TImage;
     ADOQuery_aux: TADOQuery;
     procedure FormShow(Sender: TObject);
+    procedure btn_controleClick(Sender: TObject);
+    procedure FecharClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -102,6 +104,16 @@ begin
     btn_controle.Enabled := False;
 
   ADOQuery_aux.Close;
+end;
+
+procedure TForm_menu.btn_controleClick(Sender: TObject);
+begin
+  form_usuarios.showmodal;
+end;
+
+procedure TForm_menu.FecharClick(Sender: TObject);
+begin
+  Application.Terminate;
 end;
 
 end.
