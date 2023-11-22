@@ -1,6 +1,6 @@
 object Form_usuarios: TForm_usuarios
-  Left = 124
-  Top = 416
+  Left = 188
+  Top = 431
   Width = 525
   Height = 273
   BorderIcons = [biSystemMenu]

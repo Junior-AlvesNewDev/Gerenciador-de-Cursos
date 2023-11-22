@@ -1628,6 +1628,7 @@ object Form_menu: TForm_menu
     Height = 33
     Caption = 'Cadastro de Instrutores'
     TabOrder = 0
+    OnClick = btn_cadinstrutoresClick
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
       04000000000080000000120B0000120B00001000000000000000000000000000
@@ -2108,6 +2109,7 @@ object Form_menu: TForm_menu
     Height = 33
     Caption = 'Cadastro de Cursos'
     TabOrder = 10
+    OnClick = btn_cadcursosClick
     Glyph.Data = {
       72060000424D7206000000000000320400002800000018000000180000000100
       08000000000040020000120B0000120B0000FF000000FF000000FF00FF00FFFF

@@ -44,8 +44,8 @@ procedure TForm_permissoes.FormShow(Sender: TObject);
 begin
   ADOQuery_permissoes.SQL.Text := 'SELECT NOME, USUARIO '+
                                   'FROM FUNCOES F INNER JOIN PERMISSOES P ON '+
-                                  'F.COD_FUNCAO = P.COD_FUNCAO ' + QuotedStr(usuario) +
-                                  'ORDER BY F.NOME';
+                                  'F.COD_FUNCAO = P.COD_FUNCAO ' + QuotedStr(usuario) + ')';
+                                  ' ORDER BY F.NOME';
   ADOQuery_permissoes.Open;
 end;
 
@@ -95,6 +95,8 @@ begin
   ADOQuery_aux.Open;
   cod_funcao := ADOQuery_aux.fieldbyname('COD_FUNCAO').AsString;
   ADOQuery_aux.Close;
+
+  
 
   ADOQuery_aux.SQL.Text := ' DELETE FROM PERMISSOES '+
                            ' WHERE COD_FUNCAO =' + QuotedStr(cod_funcao) +

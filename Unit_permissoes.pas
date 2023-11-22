@@ -42,10 +42,11 @@ uses Unit_logon;
 
 procedure TForm_permissoes.FormShow(Sender: TObject);
 begin
-  ADOQuery_permissoes.SQL.Text := 'SELECT NOME, USUARIO '+
-                                  'FROM FUNCOES F INNER JOIN PERMISSOES P ON '+
-                                  'F.COD_FUNCAO = P.COD_FUNCAO ' + QuotedStr(usuario) +
-                                  'ORDER BY F.NOME';
+  ADOQuery_permissoes.SQL.Text:= ' SELECT FUNCOES.NOME '+
+                                 ' FROM FUNCOES INNER JOIN PERMISSOES ON '+
+                                 ' FUNCOES.COD_FUNCAO = PERMISSOES.COD_FUNCAO '+
+                                 ' WHERE PERMISSOES.USUARIO = '+ QuotedStr(usuario)+
+                                 ' ORDER BY FUNCOES.NOME';
   ADOQuery_permissoes.Open;
 end;
 
