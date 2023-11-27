@@ -1646,6 +1646,7 @@ object Form_menu: TForm_menu
     Height = 33
     Caption = 'Cadastro de Turmas'
     TabOrder = 1
+    OnClick = btn_cadturmasClick
     Glyph.Data = {
       7E050000424D7E050000000000003E0300002800000018000000180000000100
       08000000000040020000120B0000120B0000C2000000C2000000FF00FF00FFFE
