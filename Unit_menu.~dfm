@@ -1,6 +1,6 @@
 object Form_menu: TForm_menu
-  Left = 205
-  Top = 124
+  Left = 196
+  Top = 167
   Width = 462
   Height = 613
   BorderIcons = [biSystemMenu]
@@ -1763,6 +1763,7 @@ object Form_menu: TForm_menu
     Height = 33
     Caption = 'Matr'#237'culas'
     TabOrder = 3
+    OnClick = btn_matriculasClick
     Glyph.Data = {
       76060000424D7606000000000000360400002800000018000000180000000100
       08000000000040020000120B0000120B00000001000000000000FF00FF00FEFC
@@ -1824,6 +1825,7 @@ object Form_menu: TForm_menu
     Height = 41
     Caption = 'Lan'#231'amento de Aulas'
     TabOrder = 4
+    OnClick = btn_aulasClick
     Glyph.Data = {
       C2040000424DC204000000000000820200002800000018000000180000000100
       08000000000040020000120B0000120B00009300000093000000AFACC600B8B0
@@ -1872,6 +1874,7 @@ object Form_menu: TForm_menu
     Height = 33
     Caption = 'Frequ'#234'ncias'
     TabOrder = 5
+    OnClick = btn_frequenciasClick
     Glyph.Data = {
       72060000424D7206000000000000320400002800000018000000180000000100
       08000000000040020000120B0000120B0000FF000000FF000000FF00FF00FFFF

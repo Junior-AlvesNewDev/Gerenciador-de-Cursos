@@ -27,7 +27,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    chave, sql_pesquisa : string;
+    chave, chave_aux, sql_pesquisa : string;
   end;
 
 var

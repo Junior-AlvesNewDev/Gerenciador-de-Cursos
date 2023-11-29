@@ -106,8 +106,8 @@ begin
   btn_cancelar.Enabled := True;
   btn_excluir.Enabled := False;
 
-  btn_curso.Enabled := False;
-  btn_instrutor.Enabled := False;
+  btn_curso.Enabled := True;
+  btn_instrutor.Enabled := True;
 
   if Sender = btn_novo then
     operacao := 'novo'

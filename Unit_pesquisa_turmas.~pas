@@ -61,14 +61,14 @@ begin
                  QuotedStr(edt_texto.Text)
   else if cb_campo.ItemIndex = 2 then
     condicao := ' WHERE INSTRUTORES.NOME LIKE ' +
-                 QuotedStr(edt_texto.Text)
+                 QuotedStr(edt_texto.Text);
 
   if (condicao='') or (edt_texto.Text='') then
     Showmessage('Pesquisa inválida!')
   else
    begin
     sql := ' SELECT TURMAS.COD_TURMA, ' +
-           '        CURSOS.NOME AS CURSO' +
+           '        CURSOS.NOME AS CURSO ' +
            '        INSTRUTORES.NOME AS INSTRUTOR ' +
            'FROM TURMAS ' +
            'INNER JOIN CURSOS '+

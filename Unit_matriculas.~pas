@@ -20,11 +20,18 @@ type
     edt_turma: TEdit;
     ADOQuery_aux: TADOQuery;
     btn_aluno: TBitBtn;
-    BitBtn2: TBitBtn;
+    btn_turma: TBitBtn;
+    btn_localizar: TBitBtn;
     procedure btn_alunoClick(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btn_turmaClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btn_novoClick(Sender: TObject);
+    procedure btn_fecharClick(Sender: TObject);
+    procedure btn_cancelarClick(Sender: TObject);
+    procedure btn_alterarClick(Sender: TObject);
+    procedure btn_salvarClick(Sender: TObject);
+    procedure btn_excluirClick(Sender: TObject);
+    procedure btn_localizarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -113,14 +120,17 @@ var i : integer;
 begin
   for i := 1 to Form_matriculas.ComponentCount -1 do
   begin
-    nome_obj := (Form_matriculas.Components[i] as TEdit).Name;
-    if (nome_obj <> 'edt_aluno') and (nome_obj <> 'edt_turma') then
+    if Form_matriculas.Components[i] as TEdit then
     begin
-      (Form_matriculas.Components[i] as TEdit).Enabled := True;
-      (Form_matriculas.Components[i] as TEdit).Color := clWindow;
+      nome_obj := (Form_matriculas.Components[i] as TEdit).Name;
+      if (nome_obj <> 'edt_aluno') and (nome_obj <> 'edt_turma') then
+      begin
+        (Form_matriculas.Components[i] as TEdit).Enabled := True;
+        (Form_matriculas.Components[i] as TEdit).Color := clWindow;
+      end;
     end;
   end;
-end;
+end;  
 
 procedure TForm_matriculas.limpa_campos;
 var i : integer;
@@ -147,7 +157,7 @@ begin
   end;
 end;
 
-procedure TForm_matriculas.BitBtn2Click(Sender: TObject);
+procedure TForm_matriculas.btn_turmaClick(Sender: TObject);
 begin
   edt_turma.Clear;
   Form_pesquisa_turmas.ShowModal;
@@ -181,6 +191,159 @@ begin
   cod_turma := '';
   operacao := '';
   habilita_salvar(sender);
+end;
+
+procedure TForm_matriculas.btn_fecharClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TForm_matriculas.btn_cancelarClick(Sender: TObject);
+begin
+    if operacao = 'novo' then
+    limpa_campos;
+
+    desabilita_salvar(sender);
+    bloqueia_campos;
+end;
+
+procedure TForm_matriculas.btn_alterarClick(Sender: TObject);
+begin
+    if (pk_turma = '') or (pk_aluno = '') then
+    Showmessage('Impossível alterar!')
+  else
+  begin
+    libera_campos;
+    habilita_salvar(sender);
+  end; 
+end;
+
+procedure TForm_matriculas.btn_salvarClick(Sender: TObject);
+var deuerro : boolean;
+begin
+  if (cod_aluno='') or (edt_turma.Text='') then
+   begin
+    Showmessage('Informe todos os campos !');
+   end
+  else
+   begin
+     if operacao = 'novo' then
+       adoquery_aux.SQL.Text := 'INSERT INTO MATRICULAS VALUES '+
+                                '(' + QuotedStr(cod_turma) +
+                                ',' + cod_aluno + ')'
+
+     else if operacao = 'alterar' then
+       adoquery_aux.SQL.Text := ' UPDATE MATRICULAS SET '+
+                                ' COD_TURMA ='+  QuotedStr(cod_turma) +
+                                ', COD_ALUNO ='+ cod_aluno +
+                                ' WHERE COD_TURMA = '+ QuotedStr(pk_turma) +
+                                ' AND COD_ALUNO = '+ pk_aluno;
+
+     Form_logon.ConexaoBD.BeginTrans;
+     try
+       ADOQuery_aux.ExecSQL;
+       deuerro := false;
+     except
+       on E : Exception do
+       begin
+         deuerro := true;
+         if Form_logon.ErroBD(E.Message, 'PK_Matriculas') = 'Sim' then
+           ShowMessage('Matriculas já cadastrado !')
+         else if Form_logon.ErroBD(E.Message, 'FK_Frequencias_Matriculas') = 'Sim' then
+           Showmessage('Existem frequencias lançadas para esta Matricula!')
+         else
+           ShowMessage('Ocorreu o seguinte erro: ' + E.Message);
+      end;
+   end;
+
+   if deuerro = true then
+    begin
+     Form_logon.ConexaoBD.RollbackTrans;
+    end
+   else
+    begin
+     Form_logon.ConexaoBD.CommitTrans;
+     pk_turma := cod_turma;
+     pk_aluno := cod_aluno;
+     desabilita_salvar(sender);
+     bloqueia_campos;
+  end;
+ end;
+end;
+
+procedure TForm_matriculas.btn_excluirClick(Sender: TObject);
+var deuerro : boolean;
+begin
+  if (pk_turma = '' ) or (pk_aluno = '') then
+    Showmessage('Impossível excluir!')
+  else
+   begin
+     adoquery_aux.SQL.Text := ' DELETE FROM MATRICULAS ' +
+                              ' WHERE COD_TURMA = ' + QuotedStr(pk_turma) +
+                              ' AND COD_ALUNO = ' + cod_aluno;
+     Form_logon.ConexaoBD.BeginTrans;
+
+     try
+       ADOQuery_aux.ExecSQL;
+       deuerro := false;
+     except
+       on E : Exception do
+       begin
+         deuerro := true;
+         if Form_logon.ErroBD(E.Message, 'FK_Matriculas_Alunos') = 'Sim' then
+           Showmessage('Existem frequencias lançadas para esta matricula!')
+         else
+           ShowMessage('ocorreu o seguinte erro: ' + E.Message);
+     end;
+   end;
+
+   if deuerro = true then
+   begin
+    Form_logon.ConexaoBD.RollbackTrans;
+   end
+  else
+   begin
+    Form_logon.ConexaoBD.CommitTrans;
+    pk_turma := '';
+    pk_aluno := '';
+    cod_turma := '';
+    cod_aluno := '';
+    desabilita_salvar(sender);
+    limpa_campos;
+    bloqueia_campos;
+   end;
+ end;
+end;
+
+procedure TForm_matriculas.btn_localizarClick(Sender: TObject);
+var sql : string;
+begin
+  limpa_campos;
+  bloqueia_campos;
+  desabilita_salvar(sender);
+
+  sql := 'SELECT MATRICULAS.COD_TURMA, '+
+         '       MATRICULAS.COD_ALUNO, '+
+         '       ALUNOS.NOME '+
+         'FROM MATRICULAS '+
+         'INNER JOIN ALUNOS '+
+         'ON MATRICULAS.COD_ALUNO = ALUNOS.COD_ALUNO ';
+
+  Form_pesquisa.sql_pesquisa:= sql;
+  Form_pesquisa.ShowModal;
+  if Form_pesquisa.chave <> '' then
+  begin
+    pk_turma := Form_pesquisa.chave;
+    pk_aluno := Form_pesquisa.chave_aux;
+    ADOQuery_aux.SQL.Text := sql +
+                              ' WHERE COD_TURMA = ' + QuotedStr(pk_turma) +
+                              ' AND MATRICULAS.COD_ALUNO = ' + pk_aluno;
+    ADOQuery_aux.Open;
+    edt_aluno.Text := ADOQuery_aux.Fieldbyname('NOME').AsString;
+    edt_turma.Text := pk_turma;
+    cod_turma := pk_turma;
+    cod_aluno := pk_aluno;
+  end;
 end;
 
 end.

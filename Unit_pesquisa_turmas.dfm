@@ -45,7 +45,7 @@ object Form_pesquisa_turmas: TForm_pesquisa_turmas
     Left = 184
     Top = 24
     Width = 177
-    Height = 25
+    Height = 21
     TabOrder = 1
   end
   object btn_pesquisar: TBitBtn

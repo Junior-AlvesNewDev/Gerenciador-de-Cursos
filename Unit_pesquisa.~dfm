@@ -122,6 +122,7 @@ object Form_pesquisa: TForm_pesquisa
     Kind = bkCancel
   end
   object ds_pesquisa: TDataSource
+    DataSet = ADOQuery_pesquisa
     Left = 64
     Top = 248
   end

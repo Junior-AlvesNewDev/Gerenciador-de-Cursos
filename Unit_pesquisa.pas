@@ -27,7 +27,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    chave, sql_pesquisa : string;
+    chave, chave_aux, sql_pesquisa : string;
   end;
 
 var
@@ -75,6 +75,7 @@ begin
   else
   begin
     chave := ADOQuery_pesquisa.Fields.Fields[0].AsString;
+    chave_aux := ADOQuery_pesquisa.Fields.Fields[1].AsString;
     ADOQuery_pesquisa.Close;
     Close;
   end;

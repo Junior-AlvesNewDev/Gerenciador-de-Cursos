@@ -68,7 +68,7 @@ begin
   else
    begin
     sql := ' SELECT TURMAS.COD_TURMA, ' +
-           '        CURSOS.NOME AS CURSO' +
+           '        CURSOS.NOME AS CURSO, ' +
            '        INSTRUTORES.NOME AS INSTRUTOR ' +
            'FROM TURMAS ' +
            'INNER JOIN CURSOS '+
